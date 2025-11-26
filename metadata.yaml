@@ -1,5 +1,5 @@
 homepage: "https://www.babelbeez.com"
 documentation: "https://www.babelbeez.com"
 versions:
-  - sha: REPLACE_WITH_COMMIT_SHA
+  - sha: a9f21975e912a274a6a610a949a2d027065831b3
     changeNotes: Initial release.
