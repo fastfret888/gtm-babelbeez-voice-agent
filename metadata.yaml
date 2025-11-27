@@ -1,5 +1,5 @@
 homepage: "https://www.babelbeez.com"
 documentation: "https://www.babelbeez.com"
 versions:
-  - sha: a9f21975e912a274a6a610a949a2d027065831b3
+  - sha: c208769621e19b28f763e7d3bb2a16b394b9944a
     changeNotes: Initial release.
