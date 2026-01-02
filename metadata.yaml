@@ -1,5 +1,7 @@
 homepage: "https://www.babelbeez.com"
 documentation: "https://www.babelbeez.com"
 versions:
+  - sha: 5897ba1340fdd0363df9a1b0ca4f22e7eefe84fe
+    changeNotes: Ensure gtmOnSuccess/gtmOnFailure is always called on all execution paths.
   - sha: c208769621e19b28f763e7d3bb2a16b394b9944a
     changeNotes: Initial release.
