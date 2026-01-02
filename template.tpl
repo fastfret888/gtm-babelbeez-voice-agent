@@ -58,9 +58,29 @@ var loaderUrl          = 'https://www.babelbeez.com/assets/embedLoader.js';
 // Read the only field
 var publicChatbotId = data.publicChatbotId;
 
+// Helper functions to ensure we always signal completion exactly once
+function signalSuccess() {
+  if (data.gtmOnSuccess) {
+    data.gtmOnSuccess();
+  } else if (data.gtmOnFailure) {
+    // Fallback so the tag still signals completion
+    data.gtmOnFailure();
+  }
+}
+
+function signalFailure() {
+  if (data.gtmOnFailure) {
+    data.gtmOnFailure();
+  } else if (data.gtmOnSuccess) {
+    // Fallback so the tag still signals completion
+    data.gtmOnSuccess();
+  }
+}
+
 // Validate required field
 if (!publicChatbotId) {
   logToConsole('Babelbeez Voice Agent: Missing Public Chatbot ID, tag will not run.');
+  signalFailure();
   return;
 }
 
@@ -79,22 +99,14 @@ setInWindow(
 injectScript(
   loaderUrl,
   function () {
-    if (data.gtmOnSuccess) {
-      data.gtmOnSuccess();
-    }
     logToConsole('Babelbeez Voice Agent: Loader script loaded.');
+    signalSuccess();
   },
   function (err) {
-    if (data.gtmOnFailure) {
-      data.gtmOnFailure();
-    }
     logToConsole('Babelbeez Voice Agent: Failed to load loader script.', err);
+    signalFailure();
   }
 );
-
-
-// Call data.gtmOnSuccess when the tag is finished.
-data.gtmOnSuccess();
 
 
 ___WEB_PERMISSIONS___
@@ -216,5 +228,3 @@ scenarios: []
 ___NOTES___
 
 Created on 11/26/2025, 5:24:53 PM
-
-
